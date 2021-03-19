@@ -1,0 +1,50 @@
+$darkblue:#203563;
+$orange:#eec900;
+html,body{
+  height: 100%;
+}
+.login{
+  height: 100%;
+.row{
+  height: 100%;
+margin: 0;
+.col-md-6{
+  padding: 0;
+}
+}
+.image-container{
+  background: $orange url(../img/login.jpg) no-repeat;
+  background-size: cover;
+  height: 100%;
+  position: relative;
+  &:before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background: rgba(32, 53, 99 , 0.6);
+    z-index: 2;
+  }
+}
+}
+.form-container{
+  background: $darkblue;
+  height: 100%;
+  padding-top: 100px;
+  .logo{
+    width: 50%;
+    display: block;
+    margin: 0px auto 30px auto;
+  }
+
+  form{
+    width: 70%;
+    margin: auto;
+  }
+  .forget{
+    float: right;
+    margin-top: 7px;
+  }
+}
