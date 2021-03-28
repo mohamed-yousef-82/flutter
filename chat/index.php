@@ -1,25 +1,16 @@
 <?php
-include "../api/config.php";
-include "../api/session.php";
+include "../header.php";
 include "../functions.php";
 ?>
-<!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>Chat</title>
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css'><link rel="stylesheet" href="./style.css">
 
-</head>
-<body>
 <!-- partial:index.partial.html -->
 <!--<meta http-equiv="refresh" content="5"/>-->
-<div class="container">
-	<div class="row no-gutters">
-	  <div class="col-md-4 border-right">
+<div>
+	<div class="row no-gutters" style="margin-right:0;margin-left:0;">
+	  <div class="col-md-4" style="padding-right: 0px;">
 		<div class="settings-tray">
-		  <img class="profile-image" src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/filip.jpg" alt="Profile img">
+		  <img class="profile-image" src="user.png" alt="Profile img">
 		  <span class="settings-tray--right">
 		  </span>
 		</div>
@@ -41,7 +32,7 @@ $data3=json_decode(get_msg($row['sender']),true);
 
 echo '  <div class="friend-drawer friend-drawer--onhover" data-id="'.$data2[0] ["id"].'" onclick="mes.call(this);">
 <input type="hidden" id="user_id" value="'.$user_id.'" />
-    <img class="profile-image" src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/robocop.jpg" alt="">
+    <img class="profile-image" src="profile.png" alt="">
     <div  class="text">
     <h6 >'.$data2[0] ["name"].'</h6></h6>
     <p class="text-muted">
@@ -53,7 +44,6 @@ echo '  <div class="friend-drawer friend-drawer--onhover" data-id="'.$data2[0] [
     <span class="time text-muted small">'.$data3[0] ["timestamp"].'
 </span>
   </div>
-  <hr>
 ';
 }
 }
@@ -63,7 +53,7 @@ echo '  <div class="friend-drawer friend-drawer--onhover" data-id="'.$data2[0] [
 	  <div class="col-md-8">
 		<div class="settings-tray">
 			<div class="friend-drawer no-gutters friend-drawer--grey">
-			<img class="profile-image" src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/robocop.jpg" alt="">
+			<img class="profile-image" src="profile.png" alt="">
 			<div class="text">
 			  <h6 id="name_chat">Smart Smile</h6>
 			</div>
@@ -87,8 +77,10 @@ echo '  <div class="friend-drawer friend-drawer--onhover" data-id="'.$data2[0] [
 <!-- partial -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script><script  src="./script.js"></script>
 
-</body>
-</html>
+  <?php
+  include "../footer.php";
+   ?>
+
 <script>
 var id=  $('#id').val();
 

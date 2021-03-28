@@ -17,8 +17,9 @@ while ($row = mysqli_fetch_assoc($query)){
 
     if ($row['sender']==$id){
   echo '<div class="row no-gutters">
-  <div class="col-md-3 ">
+  <div class="col-md-6 ">
     <div class="chat-bubble chat-bubble--left">'.$row['msg'].'
+    <p style="color:#888">'.$row['timestamp'].'</p>
       </div>
   </div>
   </div>';

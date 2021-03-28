@@ -1,16 +1,8 @@
 <?php
-include "../api/session.php";
 include "config.php";
-
+include "../header.php";
 error_reporting(0);
-
-
-?><!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-    <title>Users</title>
+?>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.1.7/css/fixedHeader.bootstrap.min.css">
@@ -20,28 +12,6 @@ error_reporting(0);
     <link rel="stylesheet" href="datepicker/css/bootstrap-datepicker.min.css">
 
 
-    <style type="text/css" class="init">
-
-        tfoot input {
-            width: 100%;
-            padding: 3px;
-            box-sizing: border-box;
-        }
-
-        .dataTables_wrapper .dataTables_filter {
-            float: right;
-            text-align: right;
-            visibility: hidden;
-        }
-
-        #search_wrapper{
-            width: 98%;
-        }
-
-        table.dataTable > tbody > tr.child span.dtr-title{
-            display: none;
-        }
-    </style>
 
     <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
@@ -100,7 +70,6 @@ error_reporting(0);
 
     </script>
 </head>
-<body style="padding: 10px">
 
             <table id="search" class="table table-striped table-bordered display  responsive nowrap" style="width: 100%">
                 <thead>
@@ -185,8 +154,7 @@ echo $data[0]["status"];
                 </tr>
                 </tfoot>
             </table>
-</body>
-</html>
+
 <?php
 function get_status($id){
 		include "../api/config.php";
@@ -227,8 +195,22 @@ $query = mysqli_query($conn, $sql);
 
       }
 
-
-
-
-
  ?>
+ </body>
+ </html>
+ <script>
+ bars.onclick = function(){
+   // console.log(menu.offsetWidth/screen.width+"%");
+   if(menu.classList.contains("menu_icons")){
+     menu.classList.remove("menu_icons");
+     main_content.style.width=85+"%";
+
+   }else{
+     menu.classList.add("menu_icons");
+     main_content.style.width=95+"%";
+     // main_content.style.width=100+"%"-(menu.offsetWidth/screen.width+"%");
+
+   }
+ }
+
+ </script>

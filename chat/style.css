@@ -1,12 +1,14 @@
 body {
-  background-color: #3498db;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
-
+.chat-panel{
+  height: 400px;
+  overflow-y: scroll;
+}
 .container {
-  margin: 60px auto;
+  margin: 0px auto;
   background: #fff;
   padding: 0;
   border-radius: 7px;
@@ -73,8 +75,12 @@ input:focus {
   padding: 10px 15px;
   display: flex;
   vertical-align: baseline;
-  background: #fff;
+  background: #72e0c2;
   transition: 0.3s ease;
+}
+.col-md-4 .friend-drawer{
+  border-bottom: 1px solid #4f9c87;
+
 }
 .friend-drawer--grey {
   background: #eee;
@@ -91,10 +97,10 @@ input:focus {
   margin: 0;
 }
 .friend-drawer .time {
-  color: grey;
+  color: #3a7363;
 }
 .friend-drawer--onhover:hover {
-  background: #74b9ff;
+  background:#5dd0b0;
   cursor: pointer;
 }
 .friend-drawer--onhover:hover p,
@@ -102,7 +108,9 @@ input:focus {
 .friend-drawer--onhover:hover .time {
   color: #fff !important;
 }
-
+.text-muted{
+  color: #3a7363;
+}
 hr {
   margin: 5px auto;
   width: 60%;
@@ -114,7 +122,11 @@ hr {
   margin: 10px 30px;
   border-radius: 9px;
   position: relative;
-  
+
+
+}
+.no-gutters p{
+  color: #888 !important;
 }
 .chat-bubble:after {
   content: "";

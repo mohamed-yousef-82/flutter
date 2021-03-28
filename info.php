@@ -44,8 +44,7 @@
 }
 </style>
 <?php
-include 'api/config.php';
-include 'api/session.php';
+include 'header.php';
 include 'functions.php';
 //echo $_SESSION['id'];
 ?>
@@ -69,43 +68,115 @@ include 'functions.php';
  $id=$_GET['q'];
 $arr=json_decode(user_info($id),true);
 //print_r($arr);
-echo "name:" .$arr[0]['name'];
-echo "id:".$arr[0]['id'];
-		echo "name:".$arr[0]['name'];
-		echo "city:".$arr[0]['city'];
-		echo "address:".$arr[0]['address'];
-		echo "gender:".$arr[0]['gender'];
-		echo "mobile:".$arr[0]['code'].$arr[0]['mobile'];
-		echo "age:".$arr[0]['age'];
-		echo "email:".$arr[0]['email'];
-		echo "doctor:".$arr[0]['doctor'];
-		echo '<select id="doctor">'; // Open your drop down box
-    echo '<option value="smart_smile">smart_smile</option>';
+?>
+<table class="table table-bordered" style="margin-top:10px;">
+  <thead>
+    <tr>
+      <th>
+      Name
+      </th>
+      <th>
+      Id
+      </th>
+      <th>
+      Name
+      </th>
+      <th>
+      Address
+      </th>
+      <th>
+      City
+      </th>
+      <th>
+      Gender
+      </th>
+      <th>
+      Mobile
+      </th>
+      <th>
+      Age
+      </th>
+      <th>
+      Email
+      </th>
+      <th>
+      Doctor
+      </th>
+      <th>
+      Select
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <?php echo $arr[0]['name']; ?>
+      </td>
+      <td>
+        <?php echo $arr[0]['id']; ?>
+      </td>
+      <td>
+        <?php echo $arr[0]['name']; ?>
+      </td>
+      <td>
+        <?php echo $arr[0]['city']; ?>
+      </td>
+      <td>
+        <?php echo $arr[0]['address']; ?>
+      </td>
+      <td>
+        <?php echo $arr[0]['gender']; ?>
+      </td>
+      <td>
+        <?php echo $arr[0]['code'].$arr[0]['mobile']; ?>
+      </td>
+      <td>
+        <?php echo $arr[0]['age']; ?>
+      </td>
+      <td>
+        <?php echo $arr[0]['email']; ?>
+      </td>
+      <td>
+        <?php echo $arr[0]['doctor']; ?>
+      </td>
+      <td>
+        <?php
+        echo '<select id="doctor" class="form-control">'; // Open your drop down box
+        echo '<option value="smart_smile">smart_smile</option>';
 
-$sql="Select * from users where by_doc='other' and role='doctor'";
-	  $query = mysqli_query($conn, $sql);
+    $sql="Select * from users where by_doc='other' and role='doctor'";
+        $query = mysqli_query($conn, $sql);
 
-if($query){
-	  while ($row = mysqli_fetch_assoc($query)){
-	   echo '     <option value="'.$row['name'].'">'.$row['name'].'</option>';
-}}
+    if($query){
+        while ($row = mysqli_fetch_assoc($query)){
+         echo '     <option value="'.$row['name'].'">'.$row['name'].'</option>';
+    }}
 
-echo '</select>';// Close your drop down box
-                echo '             		  <input class="btn btn-primary" name="submit" value="Update" type="submit" onclick="update(event);">
-';
- echo '<input type="hidden" id="id" value="'.$id.'">';
+    echo '</select>';// Close your drop down box
+
+         ?>
+             </td>
+
+    </tr>
+  </thead>
+</table>
+<?php
+    echo '<input class="btn btn-primary" name="submit" value="Update" type="submit" onclick="update(event);">';
+    echo '<input type="hidden" id="id" value="'.$id.'">';
  ?>
 </div>
 
 <div id="status" class="tabcontent">
 
                 <form class="form" action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
-
-			    <input class="form-control" name="date" id="date" type="text" placeholder="Date"  min='<?php echo date("yyyy/mm/dd") ?>' onfocus="this.type='date'  "required>
+          <div class="form-group">
+            <input class="form-control" name="date" id="date" type="text" placeholder="Date"  min='<?php echo date("yyyy/mm/dd") ?>' onfocus="this.type='date'  "required>
+          </div>
+          <div class="form-group">
 			    <input class="form-control" name="text" id="id" type="hidden" value="<?php echo $_GET['q']; ?>">
+          </div>
+          <div class="form-group">
 			    <input class="form-control" name="text" id="add_by" type="hidden" value="<?php echo $_SESSION['id']; ?>">
-
-
+          </div>
+          <div class="form-group">
               <select class="form-control" name="status" id="status_menu"  >
                 <option selected disabled>Status</option>
                 <option value="Scan">Scan</option>
@@ -117,52 +188,62 @@ echo '</select>';// Close your drop down box
                 <option value="at Manufacture">at Manufacture</option>
                 <option value="Shipped">Shipped</option>
                 <option value="Cancelled">Cancelled</option>
-                <option value="Completed">Completed</option></select>
-
+                <option value="Completed">Completed</option>
+              </select>
+            </div>
+            <div class="form-group">
                 <select class="form-control" name="Scan_type" id="Scan_type"  >
                   <option selected disabled>Scan Type</option>
                   <option value="Digital">Digital</option>
                   <option value="Smart">Smart</option>
                   <option value="Impression">Impression</option>
-                  <option value="Cast">Cast</option></select>
-
+                  <option value="Cast">Cast</option>
+                </select>
+              </div>
+              <div class="form-group">
                   <select class="form-control" name="approval" id="approval"  >
                     <option selected disabled>Approval</option>
                     <option value="Needs Approval">Needs Approval</option>
                     <option value="Sent for Approval">Sent for Approval</option>
-                    <option value="Approved">Approved</option></select>
+                    <option value="Approved">Approved</option>
+                  </select>
+                </div>
+                <div class="form-group">
                     <select class="form-control" name="package2" id="package2"  >
                       <option selected disabled>Package Type</option>
                       <option value="Lite">Lite</option>
                       <option value="Smart">Smart</option>
-                      <option value="Full">Full</option></select>
-
-                      <textarea name="instruction" id="instruction"></textarea>
+                      <option value="Full">Full</option>
+                    </select>
+</div>
+<div class="form-group">
+                      <textarea class="form-control" name="instruction" id="instruction"></textarea>
+                      </div>
              		  <input class="btn btn-primary" name="submit" value="Add" type="submit" onclick="add_status(event);">
-
-
 	  </form>
-
-
-
-          <table >
+    <div class="table-responsive">
+                <table class="table table-bordered">
           <thead>
             <tr>
               <th scope="col">Date</th>
               <th scope="col">Status</th>
-              <th scope="col">time</th>
+              <th scope="col">Add By</th>
+              <th scope="col">Scan Type</th>
+              <th scope="col">Approval</th>
+              <th scope="col">Package</th>
+              <th scope="col">instruction</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
             </tr>
           </thead>
           <tbody id="tb">
 		  <?php
 	$id=$_GET['q'];
 get_status($id);
-
-
-
 		  ?>
           </tbody>
           </table>
+        </div>
 
 
 </div>
@@ -170,13 +251,16 @@ get_status($id);
 <div id="treatment" class="tabcontent">
 
         <form class="form" action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
-
-			    <input class="form-control" name="text" id="id" type="hidden" value="<?php echo $_GET['q']; ?>">
+          <div class="form-group">
+            <input class="form-control" name="text" id="id" type="hidden" value="<?php echo $_GET['q']; ?>">
+          </div>
+          <div class="form-group">
 			    <input class="form-control" name="text" id="add_by" type="hidden" value="<?php echo $_SESSION['id']; ?>">
+          </div>
+          <div class="form-group">
           <label>Treatment Plan by:</label>
           <select class="form-control" name="plan" id="plan_menu"  >
             <option disabled selected >Doctor</option>
-
 <?php
           $sql="Select * from users where by_doc='smart_smile' and role='doctor'";
           	  $query = mysqli_query($conn, $sql);
@@ -189,18 +273,24 @@ get_status($id);
 
           echo '</select>';// Close your drop down box
 ?>
-
+</div>
+<div class="form-group">
 		 <label>case type:</label>
-        <textarea name="case" id="case"></textarea>
-
-    <label> no. of steps </label>  			    <input class="form-control" type="number" name="text" id="steps"  >
+        <textarea class="form-control" name="case" id="case"></textarea>
+</div>
+<div class="form-group">
+    <label> no. of steps </label>
+    <input class="form-control" type="number" name="text" id="steps">
+    </div>
+    <div class="form-group">
 	 <label>attachement:</label>
               <select class="form-control" name="attachement" id="attachement"  >
                 <option disabled selected >attachement</option>
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
-
               </select>
+            </div>
+            <div class="form-group">
 			   <label>IPR:</label>
          <select class="form-control" name="ipr" id="ipr"  >
            <option disabled selected >ipr</option>
@@ -208,12 +298,16 @@ get_status($id);
            <option value="No">No</option>
 
               </select>
+            </div>
+            <div class="form-group">
 			   <label>Retainer:</label>
          <select class="form-control" name="Retainer" id="Retainer"  >
            <option disabled selected >Retainer</option>
            <option value="Yes">Yes</option>
            <option value="No">No</option>
          </select>
+       </div>
+       <div class="form-group">
     	   <label>Refeniment:</label>
               <select class="form-control" name="Refeniment" id="Refeniment"  >
                 <option disabled selected >Refeniment</option>
@@ -223,7 +317,8 @@ get_status($id);
                 <option value="3">3</option>
                 <option value="4">4</option>
               </select>
-
+            </div>
+            <div class="form-group">
                <label>Redesign:</label>
               <select class="form-control" name="Redesign" id="Redesign"  >
                 <option disabled selected >Redesign</option>
@@ -233,19 +328,23 @@ get_status($id);
                 <option value="3">3</option>
                 <option value="4">4</option>
               </select>
-
-
-
-
+            </div>
              		  <input class="btn btn-primary" name="submit" value="Add" type="submit" onclick="add_treatment(event);">
 
 	  </form>
-
-              <table >
+    <div class="table-responsive">
+                    <table class="table table-bordered">
               <thead>
                 <tr>
-                  <th scope="col">Date</th>
-                  <th scope="col">Treatment</th>
+                  <th scope="col">Plane Menu</th>
+                  <th scope="col">Steps</th>
+                  <th scope="col">Add By</th>
+                  <th scope="col">Attachment</th>
+                  <th scope="col">Ipr</th>
+                  <th scope="col">Retainer</th>
+                  <th scope="col">Case 2</th>
+                  <th scope="col">Refeniment</th>
+                  <th scope="col">Redesign</th>
                   <th scope="col">view</th>
                 </tr>
               </thead>
@@ -256,6 +355,7 @@ get_status($id);
     		  ?>
               </tbody>
               </table>
+            </div>
 
 
 
@@ -263,18 +363,22 @@ get_status($id);
 </div>
 <div id="payement" class="tabcontent">
        <form class="form" action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
-
-	<label>date</label>		    <input class="form-control" name="date" id="date2" type="text" placeholder="Date"  min='<?php echo date("yyyy/mm/dd") ?>' onfocus="this.type='date'  "required>
+<div class="form-group">
+  	<label>date</label><input class="form-control" name="date" id="date2" type="text" placeholder="Date"  min='<?php echo date("yyyy/mm/dd") ?>' onfocus="this.type='date'  "required>
+  </div>
 			    <input class="form-control" name="text" id="id" type="hidden" value="<?php echo $_GET['q']; ?>">
 			    <input class="form-control" name="text" id="add_by" type="hidden" value="<?php echo $_SESSION['id']; ?>">
+          <div class="form-group">
 	<label>invoice no</label>		    <input class="form-control" name="text" id="invoice_no" type="number" >
+    </div>
+    <div class="form-group">
 	<label>invoice</label>		    <input class="form-control" name="text" id="file" type="file" >
+</div>
+
   <span id="uploaded_image"></span>
-
-
-
+  <div class="form-group">
    <label>payment</label>          			    <input class="form-control" type="number" name="text" id="pay_money"  >
-
+</div>
 
              		  <input class="btn btn-primary" name="submit" value="Add" type="submit" onclick="add_pay(event);">
 
@@ -283,13 +387,17 @@ get_status($id);
 	  </form>
 
 
-
-          <table >
+<div class="table-responsive">
+            <table class="table table-bordered">
           <thead>
             <tr>
               <th scope="col">Date</th>
               <th scope="col">Payment</th>
+              <th scope="col">Add By</th>
+              <th scope="col">Invoice No</th>
               <th scope="col">view</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
             </tr>
           </thead>
           <tbody id="tb2">
@@ -299,6 +407,7 @@ get_pay($id);
 		  ?>
           </tbody>
           </table>
+        </div>
 
 
 
@@ -308,9 +417,13 @@ get_pay($id);
 
        <input class="form-control" name="text" id="id" type="hidden" value="<?php echo $_GET['q']; ?>">
        <input class="form-control" name="text" id="add_by" type="hidden" value="<?php echo $_SESSION['id']; ?>">
-<label>Name</label>		    <input class="form-control" name="text" id="doc_name" type="text" >
+       <div class="form-group">
+         <label>Name</label>		    <input class="form-control" name="text" id="doc_name" type="text" >
+       </div>
+       <div class="form-group">
 <label>File</label>		    <input class="form-control" name="text" id="file_doc" type="file" >
 <span id="uploaded_doc"></span>
+</div>
 
 
 
@@ -323,21 +436,26 @@ get_pay($id);
  </form>
 
 
-
-       <table >
-       <thead>
-         <tr>
-           <th scope="col">Document</th>
-           <th scope="col">view</th>
-         </tr>
-       </thead>
-       <tbody id="tb3">
-   <?php
+<div class="table-responsive">
+  <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Document</th>
+      <th scope="col">sender</th>
+      <th scope="col">receiver</th>
+      <th scope="col">view</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody id="tb3">
+<?php
 $id=$_GET['q'];
 get_doc($id);
-   ?>
-       </tbody>
-       </table>
+?>
+  </tbody>
+  </table>
+</div>
 
 
 
@@ -349,62 +467,77 @@ get_doc($id);
 
      <input class="form-control" name="text" id="id" type="hidden" value="<?php echo $_GET['q']; ?>">
      <input class="form-control" name="text" id="add_by" type="hidden" value="<?php echo $_SESSION['id']; ?>">
-<label>Name</label>		    <input class="form-control" name="text" id="video_name" type="text" >
+     <div class="form-group">
+       <label>Name</label>		    <input class="form-control" name="text" id="video_name" type="text" >
+     </div>
+     <div class="form-group">
 <label>File</label>		    <input class="form-control" name="text" id="file_video" type="file" >
+</div>
+
 <span id="uploaded_video"></span>
-             <input class="btn btn-primary" name="submit" value="Add" type="submit" onclick="add_video(event);">
+<input class="btn btn-primary" name="submit" value="Add" type="submit" onclick="add_video(event);">
 </form>
-<table >
-<thead>
-  <tr>
-    <th scope="col">Video</th>
-    <th scope="col">view</th>
-  </tr>
-</thead>
-<tbody id="tb6">
+<div class="row">
 <?php
 $id=$_GET['q'];
 get_video($id);
 ?>
-</tbody>
-</table>
+
+</div>
 
 
 
 </div>
 
   <div id="gallery" class="tabcontent">
+    <div class="row">
+
     <?php
     $id=$_GET['q'];
     $arr2=json_decode(get_image($id),true);
     //print_r($arr);
-    echo "<table>";
 for ( $i=0;$i<count($arr2);$i++){
-  echo "<tr>";
-    echo "<td>" .$arr2[$i]['id']."</td>";
-    echo "<td><img src='uploads/".$arr2[$i]['path']."'</td>";
-       echo "<td>".$arr2[$i]['time']."</td>";
-echo "</tr>";
+  ?>
+  <div class="col-md-3">
+  <?php
+  echo "<div><img src='uploads/".$arr2[$i]['path']."' /></div>";
+  echo "<div class='gallery-txt'>";
+    echo "<span>" .$arr2[$i]['id']."</span>";
+       echo "<p>".$arr2[$i]['time']."</p>";
+       echo "<button class='close-btn'><i class='fas fa-times-circle'></i></button>";
+       echo "</div>";
+       ?>
+     </div>
+       <?php
 }
-echo "</table>";
     ?>
   </div>
+</div>
+
 
 <div id="calendar" class="tabcontent">
-
-	<label>Submit Date</label>		    <input class="form-control" name="date" id="submit_date" type="text" placeholder="Date"  min='<?php echo date("yyyy/mm/dd") ?>' onfocus="this.type='date'  "required>
+<div class="form-group">
+  <label>Submit Date</label>		    <input class="form-control" name="date" id="submit_date" type="text" placeholder="Date"  min='<?php echo date("yyyy/mm/dd") ?>' onfocus="this.type='date'  "required>
+</div>
+<div class="form-group">
   	<label>Delivery Date</label>		    <input class="form-control" name="date" id="delivery_date" type="text" placeholder="Date"  min='<?php echo date("yyyy/mm/dd") ?>' onfocus="this.type='date'  "required>
+  </div>
+  <div class="form-group">
     	<label>First Aligner Date</label>		    <input class="form-control" name="date" id="aligner1_date" type="text" placeholder="Date"  min='<?php echo date("yyyy/mm/dd") ?>' onfocus="this.type='date'  "required>
+    </div>
       <input class="btn btn-primary" name="submit" value="Add" type="submit" onclick="add_task(event);">
-
-
-         <table >
+      <br />
+      <br />
+         <div class="table-responsive">
+         <table class="table table-bordered">
          <thead>
            <tr>
              <th scope="col">task</th>
              <th scope="col">type</th>
              <th scope="col">date</th>
              <th scope="col">done</th>
+             <th scope="col">delete</th>
+             <th scope="col">edit</th>
 
            </tr>
          </thead>
@@ -415,8 +548,9 @@ echo "</table>";
      ?>
          </tbody>
          </table>
+       </div>
   </div>
-
+<?php include "footer.php"; ?>
 <script>
 document.getElementById("defaultOpen").click();
 

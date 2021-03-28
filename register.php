@@ -1,14 +1,27 @@
-<html>
+<?php
+include "header.php";
+?>
 <form class="form" action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
-
-<label>Name</label>		    <input class="form-control" name="name" id="name" type="text" >
+<div class="form-group">
+  <label>Name</label>		    <input class="form-control" name="name" id="name" type="text" >
+</div>
+<div class="form-group">
 <label>address</label>		 <input class="form-control" name="address" id="address" type="text" >
+</div>
+<div class="form-group">
 <label>Mobile</label>		 <input class="form-control" name="mobile" id="mobile" type="number" >
+</div>
+<div class="form-group">
 <label>email</label>		 <input class="form-control" name="email" id="email" type="text" >
+</div>
+<div class="form-group">
 <label>Password</label>		 <input class="form-control" name="password" id="password" type="text" >
+</div>
+<div class="form-group">
 <label>Confirm Password</label>		 <input class="form-control" name="confirm" id="confirm" type="text" >
+</div>
+<div class="form-group">
 <label>City</label>
-
           <select class="form-control" name="city" id="city"  >
             <option disabled selected >City</option>
             <option value="Cairo">Cairo</option>
@@ -18,6 +31,8 @@
             <option value="Mansoura">Mansoura</option>
             <option value="Red Sea">Red Sea</option>
           </select>
+        </div>
+          <div class="form-group">
 <label>Role</label>
  <select class="form-control" name="role" id="role"  >
     <option disabled selected >role</option>
@@ -29,7 +44,7 @@
     <option value="Manager">Manager</option>
     <option value="Doctor">Doctor</option>
   </select>
-
+</div>
 <input class="btn btn-primary" name="submit" value="Add" type="submit" >
 
 
@@ -41,8 +56,6 @@
 
 
 <?php
-include "api/config.php";
-include "api/session.php";
 if(isset($_POST['submit'])){
 
 $name=$_POST['name'];
@@ -88,4 +101,7 @@ echo "duplicated";
 }
 $conn->close();
 
+?>
+<?php
+include "footer.php";
 ?>

@@ -1,14 +1,19 @@
 <?php
-include 'api/config.php';
-include 'api/session.php';
-
+include "header.php";
 ?>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <input class="form-control" name="text" id="add_by" type="hidden" value="<?php echo $user_id; ?>">
-<label>Name</label>		    <input class="form-control" name="name" id="name" type="text" >
+<div class="form-group">
+	<label>Name</label>		    <input class="form-control" name="name" id="name" type="text" >
+</div>
+<div class="form-group">
 <label>address</label>		 <input class="form-control" name="address" id="address" type="text" >
+</div>
+<div class="form-group">
 <label>Mobile</label>		 <input class="form-control" name="mobile" id="mobile" type="number" >
+</div>
+<div class="form-group">
 <label>City</label>
 
           <select class="form-control" name="city" id="city"  >
@@ -20,16 +25,18 @@ include 'api/session.php';
             <option value="Mansoura">Mansoura</option>
             <option value="Red Sea">Red Sea</option>
           </select>
+					</div>
+					<div class="form-group">
 <label>Company</label>
  <select class="form-control" name="company" id="company"  >
     <option disabled selected >Comapny</option>
     <option value="smart_smile">Smart Smile</option>
     <option value="other">Other</option>
   </select>
-
+</div>
 <input class="btn btn-primary" name="submit" value="Add" type="submit" onclick="add_doctor(event);">
-
-<table >
+<br/><br/>
+<table class="table-bordered">
 <thead>
   <tr>
     <th scope="col">name</th>
@@ -57,6 +64,9 @@ $r.=' <td><button class="btn btn-warning" data-toggle="modal" type="button" data
 ?>
 </tbody>
 </table>
+<?php
+include "footer.php";
+ ?>
 <script>
 function add_doctor(e) { // Call to ajax function
   e.preventDefault();

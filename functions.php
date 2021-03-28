@@ -105,11 +105,20 @@ if($query){
 
 	  while ($row = mysqli_fetch_assoc($query)){
 
-$r= '<tr><td>'.$row['task'].'</td><td>'.$row['type'].'</td><td>'.$row['date'].'</td><td>'.$row['done'].'</td>';
-if ($role=="admin" ) {
+$r= '<tr>
+<td>'.$row['task'].'</td>
+<td>'.$row['type'].'</td>
+<td>'.$row['date'].'</td>
+';
+if ($row['done'] == 0 ) {
+	$r.= '<td align="center"><i class="fas fa-times-circle text-danger"></i></td>';
+}else{
+	$r.= '<td align="center"><i class="fas fa-check-circle text-success"></i></td>';
 
-$r.= '<td> <button type="button" onclick="del_status.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" >Delete</button></td>';
-$r.= '<td> <button type="button" onclick="del_status.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" >Edit</button></td>';
+}
+if ($role=="admin" ) {
+	$r.= '<td> <button class="btn btn-warning" type="button" onclick="del_status.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-edit btn-icon"></i>Edit</button></td>';
+$r.= '<td> <button class="btn btn-danger" type="button" onclick="del_status.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-trash btn-icon"></i>Delete</button></td>';
 }
 
 $r.=' </tr>';
@@ -129,12 +138,10 @@ $query = mysqli_query($conn, $sql);
 
  while ($row = mysqli_fetch_assoc($query)) {
 
-$r= '<tr><td>'.$row['est_date'].'</td><td>'.$row['status'];
+$r= '<tr><td>'.$row['est_date'].'</td><td>'.$row['status'].'</td><td>'.$row['add_by'].'</td><td>'.$row['scan_type'].'</td><td>'.$row['approval'].'</td><td>'.$row['package'].'</td><td>'.$row['instruction'].'</td>';
 if ($role=="admin" ) {
-
-$r.= '<td> <button type="button" onclick="del_status.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" >Delete</button></td>';
-$r.= '<td> <button type="button" onclick="del_status.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" >Edit</button></td>';
-
+	$r.= '<td> <button class="btn btn-warning" type="button" onclick="del_status.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-edit btn-icon"></i>Edit</button></td>';
+$r.= '<td> <button class="btn btn-danger" type="button" onclick="del_status.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-trash btn-icon"></i>Delete</button></td>';
 
  $r.='</tr>';
 echo $r;
@@ -151,11 +158,11 @@ $query = mysqli_query($conn, $sql);
 
  while ($row = mysqli_fetch_assoc($query)) {
 
-$r= '<tr><td>'.$row['plan_menu'].'</td><td>'.$row['steps'];
+$r= '<tr><td>'.$row['plan_menu'].'</td><td>'.$row['steps'].'</td><td>'.$row['add_by'].'</td><td>'.$row['attachement'].'</td><td>'.$row['ipr'].'</td><td>'.$row['add_by'].'</td><td>'.$row['Retainer'].'</td><td>'.$row['case2'].'</td><td>'.$row['Refeniment'].'</td><td>'.$row['Redesign'];
 if ($role=="admin" ) {
 
-$r.= '<td> <button type="button" onclick="del_status.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" >Delete</button></td>';
-$r.= '<td> <button type="button" onclick="del_status.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" >Edit</button></td>';
+$r.= '<td> <button type="button" class="btn btn-danger" onclick="del_status.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-trash btn-icon"></i>Delete</button></td>';
+$r.= '<td> <button type="button" class="btn btn-warning" onclick="del_status.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-edit btn-icon"></i>Edit</button></td>';
 
 
  $r.='</tr>';
@@ -176,12 +183,9 @@ echo $r;
   while ($row = mysqli_fetch_assoc($query)) {
 
 		if ($role=="admin" ) {
-
-		$r= '<tr><td>'.$row['name'].'</td><td><a href="'.$row['pdffile'].'"> View </a></td><td> <button type="button" onclick="del_doc.call(this);;" id="del_btn_doc" data-id="'. $row['id'] . '" >Delete</button>
+			$r= '<tr><td> <button class="btn btn-warning" type="button" onclick="del_status.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-edit btn-icon"></i>Edit</button></td>';
+		$r.= '<td>'.$row['name'].'</td><td>'.$row['sender'].'</td><td>'.$row['receiver'].'</td><td><a  class="btn btn-success" href="'.$row['pdffile'].'"><i class="fa fa-eye btn-icon"></i>View </a></td><td> <button class="btn btn-danger" type="button" onclick="del_doc.call(this);;" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-trash btn-icon"></i>Delete</button>
 </td>';
-
-
-$r.= '<td> <button type="button" onclick="del_status.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" >Edit</button></td>';
 }
 
 
@@ -202,16 +206,20 @@ $query = mysqli_query($conn, $sql);
 
  while ($row = mysqli_fetch_assoc($query)) {
 	 if ($role=="admin" ) {
+?>
+<div class="col-md-4">
+	<div class="video-block">
+    <iframe src="<?php echo $row['pdffile'] ?>" width="100%" height="200px"></iframe>
+		<p>
+			<?php echo $row['name'] ?>
+		</p>
+<button  class="btn btn-warning" type="button" onclick="del_status.call(this);" id="del_btn_doc" data-id="<?php echo $row['id'] ?>" ><i class="fa fa-edit btn-icon"></i>Edit</button></td>
+<button  class="btn btn-danger" type="button" onclick="del_video.call(this);" id="del_btn_vid" data-id="<?php echo $row['id'] ?>"><i class="fa fa-trash btn-icon"></i>Delete</button>
+</div>
 
-	 $r= '<tr><td>'.$row['name'].'</td><td><a href="'.$row['pdffile'].'"> View </a></td><td> <button type="button" onclick="del_video.call(this);;" id="del_btn_vid" data-id="'. $row['id'] . '" >Delete</button>
-</td>';
-
-$r.= '<td> <button type="button" onclick="del_status.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" >Edit</button></td>';
+</div>
+<?php
 }
-
-$r.='</tr>';
-echo $r;
-
  }
 
 
@@ -228,10 +236,9 @@ $query = mysqli_query($conn, $sql);
  while ($row = mysqli_fetch_assoc($query)) {
 	 if ($role=="admin" ) {
 
-$r= '<tr><td>'.$row['est_date'].'</td><td>'.$row['pay'].'</td><td><a href="'.$row['invoice_path'].'"> View </a></td>';
-$r.='<td> <button type="button" onclick="del_pay.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" >Delete</button></td>';
-
-$r.= '<td> <button type="button" onclick="del_status.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" >Edit</button></td>';
+$r= '<tr><td>'.$row['est_date'].'</td><td>'.$row['pay'].'</td><td>'.$row['add_by'].'</td><td>'.$row['invoice_no'].'</td><td><a class="btn btn-success" href="'.$row['invoice_path'].'"><i class="fa fa-eye btn-icon"></i>View </a></td>';
+$r.= '<td> <button class="btn btn-warning" type="button" onclick="del_status.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-edit btn-icon"></i>Edit</button></td>';
+$r.='<td> <button class="btn btn-danger" type="button" onclick="del_pay.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-trash btn-icon"></i>Delete</button></td>';
 }
 
 $r.='</tr>';

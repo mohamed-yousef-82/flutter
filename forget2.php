@@ -1,22 +1,17 @@
-<html>
-<form class="form" action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
-
-<label>New Password</label>		 <input class="form-control" name="pass" id="pass" type="text" >
-<label>Confirm Password</label>		 <input class="form-control" name="confirm" id="confirm" type="text" >
-
-<input class="btn btn-primary" name="submit" value="Add" type="submit" >
-
-
-</form>
-
-</html>
-
-
-
-
 <?php
-include "api/config.php";
-include "api/session.php";
+include "header.php";
+?>
+<form class="form" action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+<div class="form-group">
+	<label>New Password</label>		 <input class="form-control" name="pass" id="pass" type="text" >
+</div>
+<div class="form-group">
+<label>Confirm Password</label>		 <input class="form-control" name="confirm" id="confirm" type="text" >
+</div>
+<input class="btn btn-primary" name="submit" value="Add" type="submit" >
+</form>
+<?php
+
 if(isset($_POST['submit'])){
 
 $pass=$_POST['pass'];
@@ -41,4 +36,7 @@ $pass=password_hash($pass,PASSWORD_DEFAULT);
 }
 $conn->close();
 }
+?>
+<?php
+include "footer.php";
 ?>

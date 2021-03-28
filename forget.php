@@ -1,8 +1,14 @@
-<html>
+<?php
+include "header.php";
+?>
 <form class="form" action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
-
-<label>Mobile</label>		 <input class="form-control" name="mobile" id="mobile" type="number" >
+<div class="form-group">
+  <label>Mobile</label>		 <input class="form-control" name="mobile" id="mobile" type="number" >
+</div>
+<div class="form-group">
 <label>email</label>		 <input class="form-control" name="email" id="email" type="text" >
+</div>
+<div class="form-group">
 <label>City</label>
 
           <select class="form-control" name="city" id="city"  >
@@ -14,20 +20,17 @@
             <option value="Mansoura">Mansoura</option>
             <option value="Red Sea">Red Sea</option>
           </select>
-
+        </div>
 <input class="btn btn-primary" name="submit" value="Add" type="submit" >
 
 
 </form>
 
-</html>
 
 
 
 
 <?php
-include "api/config.php";
-include "api/session.php";
 if(isset($_POST['submit'])){
 
 $mobile=$_POST['mobile'];
@@ -74,4 +77,7 @@ else{
 
 $conn->close();
 }
+?>
+<?php
+include "footer.php";
 ?>
