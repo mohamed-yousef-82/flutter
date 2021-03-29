@@ -26,8 +26,8 @@ while ($row = mysqli_fetch_assoc($query)){
 }else{
 
   echo '<div class="row no-gutters">
-  <div class="col-md-3 offset-md-9">
-    <div class="chat-bubble chat-bubble--right">'.$row['msg'].'
+  <div class="col-md-12 offset-md-9">
+    <div style="float:right" class="chat-bubble chat-bubble--right">'.$row['msg'].'
       </div>
   </div>
   </div>';

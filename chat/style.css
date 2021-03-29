@@ -138,6 +138,10 @@ hr {
   border-bottom: 0;
   margin-top: -10px;
 }
+.chat-bubble--right{
+  right: 0 !important;
+  left: auto;
+}
 .chat-bubble--left:after {
   left: 0;
   border-right-color: #eee;
@@ -163,6 +167,8 @@ hr {
 .offset-md-9 .chat-bubble {
   background: #74b9ff;
   color: #fff;
+  right: 0;
+  left: auto;
 }
 
 .chat-box-tray {

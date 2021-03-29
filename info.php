@@ -482,16 +482,11 @@ get_doc($id);
 $id=$_GET['q'];
 get_video($id);
 ?>
-
 </div>
-
-
-
 </div>
 
   <div id="gallery" class="tabcontent">
     <div class="row">
-
     <?php
     $id=$_GET['q'];
     $arr2=json_decode(get_image($id),true);
@@ -499,8 +494,9 @@ get_video($id);
 for ( $i=0;$i<count($arr2);$i++){
   ?>
   <div class="col-md-3">
+    <div class="gallery-container" data-toggle="modal" data-target="#update_modal_<?php echo $arr2[$i]['id'] ?>">
+    <img src='uploads/<?php echo $arr2[$i]["path"] ?>' /></div>
   <?php
-  echo "<div><img src='uploads/".$arr2[$i]['path']."' /></div>";
   echo "<div class='gallery-txt'>";
     echo "<span>" .$arr2[$i]['id']."</span>";
        echo "<p>".$arr2[$i]['time']."</p>";
@@ -508,6 +504,21 @@ for ( $i=0;$i<count($arr2);$i++){
        echo "</div>";
        ?>
      </div>
+     <!-- view Modal -->
+     <div class="modal" id="update_modal_<?php echo $arr2[$i]['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog" role="document">
+     	<div class="modal-content">
+     		<div class="modal-body">
+<img src='uploads/<?php echo $arr2[$i]["path"] ?>' />
+     		</div>
+     		<div class="modal-footer">
+     			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+     		</div>
+     	</div>
+     </div>
+     </div>
+     <!-- End view Modal -->
+
        <?php
 }
     ?>
@@ -536,8 +547,8 @@ for ( $i=0;$i<count($arr2);$i++){
              <th scope="col">type</th>
              <th scope="col">date</th>
              <th scope="col">done</th>
-             <th scope="col">delete</th>
              <th scope="col">edit</th>
+             <th scope="col">delete</th>
 
            </tr>
          </thead>

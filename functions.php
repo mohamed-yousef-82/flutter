@@ -1,9 +1,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <?php
-
-
-
 function user_info($id){
 	include "api/config.php";
 
@@ -117,10 +114,51 @@ if ($row['done'] == 0 ) {
 
 }
 if ($role=="admin" ) {
-	$r.= '<td> <button class="btn btn-warning" type="button" onclick="del_status.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-edit btn-icon"></i>Edit</button></td>';
+	$r.= '<td> <button class="btn btn-warning" data-toggle="modal" data-target="#update_modal_'.$row['id'].'" type="button" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-edit btn-icon"></i>Edit</button></td>';
 $r.= '<td> <button class="btn btn-danger" type="button" onclick="del_status.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-trash btn-icon"></i>Delete</button></td>';
 }
+?>
+<!-- Update Modal -->
+<div class="modal" id="update_modal_<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel">Edit</h5>
 
+		</div>
+		<div class="modal-body">
+		<form>
+			<div class="form-group">
+			<label>date</label>
+			 <input type="text" value="<?php echo $row['date'] ?>" class="form-control" name="ques" id="ques" />
+			</div>
+			<div class="form-group">
+			<label>task</label>
+			 <input type="text" value="<?php echo $row['task'] ?>" class="form-control" name="ques" id="ques" />
+			</div>
+			<div class="form-group">
+			<label>type</label>
+			 <input type="text" value="<?php echo $row['type'] ?>" class="form-control" name="ques" id="ques" />
+			</div>
+			<div class="form-group">
+			<label>done</label>
+			<select class="form-control">
+				<option><?php echo $row['done'] ?></option>
+			</select>
+			</div>
+
+		</form>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary">Save changes</button>
+		</div>
+	</div>
+</div>
+</div>
+<!-- End Update Modal -->
+
+<?php
 $r.=' </tr>';
 echo $r;
 	  }
@@ -183,10 +221,47 @@ echo $r;
   while ($row = mysqli_fetch_assoc($query)) {
 
 		if ($role=="admin" ) {
-			$r= '<tr><td> <button class="btn btn-warning" type="button" onclick="del_status.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-edit btn-icon"></i>Edit</button></td>';
-		$r.= '<td>'.$row['name'].'</td><td>'.$row['sender'].'</td><td>'.$row['receiver'].'</td><td><a  class="btn btn-success" href="'.$row['pdffile'].'"><i class="fa fa-eye btn-icon"></i>View </a></td><td> <button class="btn btn-danger" type="button" onclick="del_doc.call(this);;" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-trash btn-icon"></i>Delete</button>
+			$r= '<tr>';
+		$r.= '<td>'.$row['name'].'</td><td>'.$row['sender'].'</td><td>'.$row['receiver'].'</td><td><a  class="btn btn-success" href="'.$row['pdffile'].'"><i class="fa fa-eye btn-icon"></i>View </a></td><td> <button class="btn btn-warning" data-toggle="modal" type="button" data-target="#update_modal_'.$row['id'].'" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-edit btn-icon"></i>Edit</button></td><td> <button class="btn btn-danger" type="button" onclick="del_doc.call(this);;" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-trash btn-icon"></i>Delete</button>
 </td>';
 }
+?>
+<!-- Update Modal -->
+<div class="modal" id="update_modal_<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+
+		</div>
+		<div class="modal-body">
+		<form>
+			<div class="form-group">
+			<label>sender</label>
+			 <input type="text" value="<?php echo $row['sender'] ?>" class="form-control" name="ques" id="ques" />
+			</div>
+			<div class="form-group">
+			<label>receiver</label>
+			<input type="text" value="<?php echo $row['receiver'] ?>" class="form-control" name="ques" id="ques" />
+			</div>
+			<div class="form-group">
+			<label>file</label>
+			<iframe src="<?php echo $row['receiver'] ?>" width="" height=""></iframe>
+			<input type="file" value="<?php echo $row['receiver'] ?>" class="form-control" name="ques" id="ques" />
+			</div>
+
+		</form>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary">Save changes</button>
+		</div>
+	</div>
+</div>
+</div>
+<!-- End Update Modal -->
+
+<?php
 
 
 $r.='</tr>';
@@ -209,14 +284,46 @@ $query = mysqli_query($conn, $sql);
 ?>
 <div class="col-md-4">
 	<div class="video-block">
+		<!-- <div class="gallery-container" data-toggle="modal" data-target="#update_modal_<?php echo $row['id'] ?>"> -->
     <iframe src="<?php echo $row['pdffile'] ?>" width="100%" height="200px"></iframe>
+	<!-- </div> -->
 		<p>
 			<?php echo $row['name'] ?>
 		</p>
-<button  class="btn btn-warning" type="button" onclick="del_status.call(this);" id="del_btn_doc" data-id="<?php echo $row['id'] ?>" ><i class="fa fa-edit btn-icon"></i>Edit</button></td>
+<button  class="btn btn-warning" type="button" data-toggle="modal" data-target="#update_modal_<?php echo $row['id'] ?>" id="del_btn_doc" data-id="<?php echo $row['id'] ?>" ><i class="fa fa-edit btn-icon"></i>Edit</button></td>
 <button  class="btn btn-danger" type="button" onclick="del_video.call(this);" id="del_btn_vid" data-id="<?php echo $row['id'] ?>"><i class="fa fa-trash btn-icon"></i>Delete</button>
 </div>
 
+<!-- Update Modal -->
+<div class="modal" id="update_modal_<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+		</div>
+		<div class="modal-body">
+		<form>
+			<div class="form-group">
+				<iframe src="<?php echo $row['pdffile'] ?>" width="100%" height="auto"></iframe>
+			</div>
+			<div class="form-group">
+			<label>name</label>
+			 <input type="text" value="<?php echo $row['name'] ?>" class="form-control" name="ques" id="ques" />
+			</div>
+			<div class="form-group">
+			<label>file</label>
+			<input type="file" value="<?php echo $row['receiver'] ?>" class="form-control" name="ques" id="ques" />
+			</div>
+		</form>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary">Save changes</button>
+		</div>
+	</div>
+</div>
+</div>
+<!-- End Update Modal -->
 </div>
 <?php
 }
@@ -237,13 +344,46 @@ $query = mysqli_query($conn, $sql);
 	 if ($role=="admin" ) {
 
 $r= '<tr><td>'.$row['est_date'].'</td><td>'.$row['pay'].'</td><td>'.$row['add_by'].'</td><td>'.$row['invoice_no'].'</td><td><a class="btn btn-success" href="'.$row['invoice_path'].'"><i class="fa fa-eye btn-icon"></i>View </a></td>';
-$r.= '<td> <button class="btn btn-warning" type="button" onclick="del_status.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-edit btn-icon"></i>Edit</button></td>';
+$r.= '<td> <button class="btn btn-warning" type="button" data-toggle="modal" data-target="#update_modal_'.$row['id'].'"  id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-edit btn-icon"></i>Edit</button></td>';
 $r.='<td> <button class="btn btn-danger" type="button" onclick="del_pay.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-trash btn-icon"></i>Delete</button></td>';
 }
+?>
+<!-- Update Modal -->
+<div class="modal" id="update_modal_<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+
+		</div>
+		<div class="modal-body">
+		<form>
+			<div class="form-group">
+			<label>date</label>
+			 <input type="text" value="<?php echo $row['est_date'] ?>" class="form-control" name="ques" id="ques" />
+			</div>
+			<div class="form-group">
+			<label>invoice no</label>
+			 <input type="text" value="<?php echo $row['invoice_no'] ?>" class="form-control" name="ques" id="ques" />
+			</div>
+			<div class="form-group">
+			<label>invoice</label>
+			 <input type="text" value="<?php echo $row['pay'] ?>" class="form-control" name="ques" id="ques" />
+			</div>
+		</form>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary">Save changes</button>
+		</div>
+	</div>
+</div>
+</div>
+<!-- End Update Modal -->
+<?php
 
 $r.='</tr>';
 echo $r;
-
  }
 
 

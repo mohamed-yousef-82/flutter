@@ -70,90 +70,180 @@ error_reporting(0);
 
     </script>
 </head>
+<div id="accordion">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+             All
+         </button>
+      </h5>
+    </div>
 
-            <table id="search" class="table table-striped table-bordered display  responsive nowrap" style="width: 100%">
-                <thead>
-                <tr>
-                  <th><strong>Name</strong></td>
-                  <th><strong>City</strong></td>
-                  <th><strong>Status</strong></td>
-                  <th><strong>Package</strong></td>
-                  <th><strong>by_doc</strong></td>
-                  <th><strong>View</strong></td>
-        <th><strong>age</strong></td>
-        <th><strong>Email</strong></td>
-        <th><strong>address</strong></td>
-            <th><strong>id</strong></td>
-                  <th><strong>time</strong></td>
-                </tr>
-                </thead>
-                <tbody>
-                <?php
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        <form class="form" action="index.html" method="post">
+          <div class="form-group">
+            <input class="form-control" type="text" name="name" value="" placeholder="text here">
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" name="name" value="" placeholder="text here">
+          </div>
+          <div class="form-group">
+            <input class="btn btn-primary" type="submit" name="name" value="Submit">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Sections
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+        <form class="form" action="index.html" method="post">
+          <div class="form-group">
+            <input class="form-control" type="text" name="name" value="" placeholder="text here">
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" name="name" value="" placeholder="text here">
+          </div>
+          <div class="form-group">
+            <label>Select</label>
+            <select class="form-control" name="">
+              <option>
+                1
+              </option>
+              <option>
+                2
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Select</label>
+            <select class="form-control" name="">
+              <option>
+                1
+              </option>
+              <option>
+                2
+              </option>
+            </select>
+          </div>
 
-                $sql = "SELECT * FROM ".$SETTINGS["data_table"]." where role='user'";
+          <div class="form-group">
+            <input class="btn btn-primary" type="submit" name="name" value="Submit">
+          </div>
+        </form>
 
-                if ($result = $mysqli->query($sql)) {
-                    while ($row = $result->fetch_assoc()) {
-                        ?>
-                        <tr>
-                            <td><?php echo $row["name"]; ?></td>
-                            <td><?php echo $row["city"]; ?></td>
-                      <!--      <td><?php echo $row["gender"]; ?></td>-->
-                            <td><?php
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Users Data
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body">
+      <div class="table-responsive">
+        <table id="search" class="table table-striped table-bordered display  responsive nowrap" style="width: 100%">
+            <thead>
+            <tr>
+              <th><strong>Name</strong></td>
+              <th><strong>City</strong></td>
+              <th><strong>Status</strong></td>
+              <th><strong>Package</strong></td>
+              <th><strong>by_doc</strong></td>
+              <th><strong>View</strong></td>
+    <th><strong>age</strong></td>
+    <th><strong>Email</strong></td>
+    <th><strong>address</strong></td>
+        <th><strong>id</strong></td>
+              <th><strong>time</strong></td>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+
+            $sql = "SELECT * FROM ".$SETTINGS["data_table"]." where role='user'";
+
+            if ($result = $mysqli->query($sql)) {
+                while ($row = $result->fetch_assoc()) {
+                    ?>
+                    <tr>
+                        <td><?php echo $row["name"]; ?></td>
+                        <td><?php echo $row["city"]; ?></td>
+                  <!--      <td><?php echo $row["gender"]; ?></td>-->
+                        <td><?php
 
 $data=json_decode(get_status($row["id"]),true);
 
 echo $data[0]["status"];
 
-                             ?></td>
+                         ?></td>
 
-                             <td><?php
+                         <td><?php
 
-                             $data=json_decode(get_status($row["id"]),true);
- echo $data[0]["package"];
+                         $data=json_decode(get_status($row["id"]),true);
+echo $data[0]["package"];
 
-                              ?></td>
+                          ?></td>
 
 
-                              <td><?php
+                          <td><?php
 
-                              $data=json_decode(get_treatment($row["id"]),true);
-  echo $data[0]["plan_menu"];
+                          $data=json_decode(get_treatment($row["id"]),true);
+echo $data[0]["plan_menu"];
 
-                               ?></td>
+                           ?></td>
 
-                            <td><a class="btn btn-success" href="../send_not.php?q=<?php echo $row['id']; ?>" >Send</a></td>
-                            <td><?php echo $row["age"]; ?></td>
-                            <td><?php echo $row["email"]; ?></td>
-                            <td><?php echo $row["address"]; ?></td>
-                            <td><?php echo $row["id"]; ?></td>
-                            <td><?php echo $row["timestamp"]; ?></td>
+                        <td><a class="btn btn-success" href="../send_not.php?q=<?php echo $row['id']; ?>" >Send</a></td>
+                        <td><?php echo $row["age"]; ?></td>
+                        <td><?php echo $row["email"]; ?></td>
+                        <td><?php echo $row["address"]; ?></td>
+                        <td><?php echo $row["id"]; ?></td>
+                        <td><?php echo $row["timestamp"]; ?></td>
 
-                        </tr>
-                    <?php }
-                } else {
+                    </tr>
+                <?php }
+            } else {
+            ?>
+            <tr><td colspan="5">No results found.</td>
+                <?php
+                }
                 ?>
-                <tr><td colspan="5">No results found.</td>
-                    <?php
-                    }
-                    ?>
-                </tbody>
-                <tfoot>
-                <tr>
-                    <th><strong>Name</strong></td>
-                    <th><strong>City</strong></td>
-                    <th><strong>Status</strong></td>
-                    <th><strong>Package</strong></td>
-                    <th><strong>by_doc</strong></td>
-                    <th><strong>View</strong></td>
-					<th><strong>age</strong></td>
-					<th><strong>Email</strong></td>
-					<th><strong>address</strong></td>
-			        <th><strong>id</strong></td>
-                    <th><strong>time</strong></td>
-                </tr>
-                </tfoot>
-            </table>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th><strong>Name</strong></td>
+                <th><strong>City</strong></td>
+                <th><strong>Status</strong></td>
+                <th><strong>Package</strong></td>
+                <th><strong>by_doc</strong></td>
+                <th><strong>View</strong></td>
+      <th><strong>age</strong></td>
+      <th><strong>Email</strong></td>
+      <th><strong>address</strong></td>
+          <th><strong>id</strong></td>
+                <th><strong>time</strong></td>
+            </tr>
+            </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
 
 <?php
 function get_status($id){
@@ -196,8 +286,8 @@ $query = mysqli_query($conn, $sql);
       }
 
  ?>
- </body>
- </html>
+ <script type="text/javascript" language="javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
  <script>
  bars.onclick = function(){
    // console.log(menu.offsetWidth/screen.width+"%");
