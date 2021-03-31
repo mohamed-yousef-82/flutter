@@ -206,13 +206,42 @@ echo $data[0]["plan_menu"];
 
                            ?></td>
 
-                        <td><a class="btn btn-success" href="../send_not.php?q=<?php echo $row['id']; ?>" >Send</a></td>
+                        <td><a class="btn btn-success" data-toggle="modal" data-target="#update_modal_<?php echo $row['id']; ?>" >Send</a></td>
                         <td><?php echo $row["age"]; ?></td>
                         <td><?php echo $row["email"]; ?></td>
                         <td><?php echo $row["address"]; ?></td>
                         <td><?php echo $row["id"]; ?></td>
                         <td><?php echo $row["timestamp"]; ?></td>
+                        <!-- send Modal -->
+                        <div class="modal" id="update_modal_<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                        	<div class="modal-content">
+                        		<div class="modal-header">
+                        			<h5 class="modal-title" id="exampleModalLabel">Send</h5>
+                        		</div>
+                        		<div class="modal-body">
+                        		<form>
+                              <input type="hidden" name="user_id" id="user_id" value="<?php echo $user_id;?>" />
+                              <div class="form-group">
+                              <input class="form-control" placeholder="subject" type="text" name="subject" id="subject" />
+                            </div>
+                              <div class="form-group">
+                              <input class="form-control" placeholder="details" type="textarea" name="details" id="details" />
+                            </div>
+                        		</form>
+                        		</div>
+                        		<div class="modal-footer">
+                        			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <input class="btn btn-primary" type="button" name="submit" id="submit" value="send"/>
+                        		</div>
+                        	</div>
+                        </div>
+                        </div>
+                        <!-- End send Modal -->
 
+                      <?php
+                      $id=$_GET['q'];
+                      ?>
                     </tr>
                 <?php }
             } else {

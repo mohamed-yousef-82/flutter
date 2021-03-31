@@ -178,9 +178,50 @@ $query = mysqli_query($conn, $sql);
 
 $r= '<tr><td>'.$row['est_date'].'</td><td>'.$row['status'].'</td><td>'.$row['add_by'].'</td><td>'.$row['scan_type'].'</td><td>'.$row['approval'].'</td><td>'.$row['package'].'</td><td>'.$row['instruction'].'</td>';
 if ($role=="admin" ) {
-	$r.= '<td> <button class="btn btn-warning" type="button" onclick="del_status.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-edit btn-icon"></i>Edit</button></td>';
+	$r.= '<td> <button class="btn btn-warning" type="button" data-toggle="modal" data-target="#update_modal_'.$row['id'].'" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-edit btn-icon"></i>Edit</button></td>';
 $r.= '<td> <button class="btn btn-danger" type="button" onclick="del_status.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-trash btn-icon"></i>Delete</button></td>';
+?>
+<!-- Update Modal -->
+<div class="modal" id="update_modal_<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel">Edit</h5>
 
+		</div>
+		<div class="modal-body">
+		<form>
+			<div class="form-group">
+			<label>est date</label>
+			 <input type="text" value="<?php echo $row['est_date'] ?>" class="form-control" name="ques" id="ques" />
+			</div>
+			<div class="form-group">
+			<label>status</label>
+			 <input type="text" value="<?php echo $row['status'] ?>" class="form-control" name="ques" id="ques" />
+			</div>
+			<div class="form-group">
+			<label>add by</label>
+			 <input type="text" value="<?php echo $row['add_by'] ?>" class="form-control" name="ques" id="ques" />
+			</div>
+			<div class="form-group">
+			<label>scan type</label>
+			<select class="form-control">
+				<option><?php echo $row['scan_type'] ?></option>
+			</select>
+			</div>
+
+		</form>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary">Save changes</button>
+		</div>
+	</div>
+</div>
+</div>
+<!-- End Update Modal -->
+
+<?php
  $r.='</tr>';
 echo $r;
  }
@@ -198,11 +239,50 @@ $query = mysqli_query($conn, $sql);
 
 $r= '<tr><td>'.$row['plan_menu'].'</td><td>'.$row['steps'].'</td><td>'.$row['add_by'].'</td><td>'.$row['attachement'].'</td><td>'.$row['ipr'].'</td><td>'.$row['add_by'].'</td><td>'.$row['Retainer'].'</td><td>'.$row['case2'].'</td><td>'.$row['Refeniment'].'</td><td>'.$row['Redesign'];
 if ($role=="admin" ) {
-
+$r.= '<td> <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#update_modal_'.$row['id'].'" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-edit btn-icon"></i>Edit</button></td>';
 $r.= '<td> <button type="button" class="btn btn-danger" onclick="del_status.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-trash btn-icon"></i>Delete</button></td>';
-$r.= '<td> <button type="button" class="btn btn-warning" onclick="del_status.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-edit btn-icon"></i>Edit</button></td>';
+?>
+<!-- Update Modal -->
+<div class="modal" id="update_modal_<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel">Edit</h5>
 
+		</div>
+		<div class="modal-body">
+		<form>
+			<div class="form-group">
+			<label>plan menu</label>
+			 <input type="text" value="<?php echo $row['plan_menu'] ?>" class="form-control" name="ques" id="ques" />
+			</div>
+			<div class="form-group">
+			<label>steps</label>
+			 <input type="text" value="<?php echo $row['steps'] ?>" class="form-control" name="ques" id="ques" />
+			</div>
+			<div class="form-group">
+			<label>add by</label>
+			 <input type="text" value="<?php echo $row['add_by'] ?>" class="form-control" name="ques" id="ques" />
+			</div>
+			<div class="form-group">
+			<label>attachement</label>
+			<select class="form-control">
+				<option><?php echo $row['attachement'] ?></option>
+			</select>
+			</div>
 
+		</form>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary">Save changes</button>
+		</div>
+	</div>
+</div>
+</div>
+<!-- End Update Modal -->
+
+<?php
  $r.='</tr>';
 echo $r;
  }
@@ -222,10 +302,31 @@ echo $r;
 
 		if ($role=="admin" ) {
 			$r= '<tr>';
-		$r.= '<td>'.$row['name'].'</td><td>'.$row['sender'].'</td><td>'.$row['receiver'].'</td><td><a  class="btn btn-success" href="'.$row['pdffile'].'"><i class="fa fa-eye btn-icon"></i>View </a></td><td> <button class="btn btn-warning" data-toggle="modal" type="button" data-target="#update_modal_'.$row['id'].'" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-edit btn-icon"></i>Edit</button></td><td> <button class="btn btn-danger" type="button" onclick="del_doc.call(this);;" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-trash btn-icon"></i>Delete</button>
+		$r.= '<td>'.$row['name'].'</td><td>'.$row['sender'].'</td><td>'.$row['receiver'].'</td><td><a data-toggle="modal"  data-target="#view_modal_'.$row['id'].'" class="btn btn-success"><i class="fa fa-eye btn-icon"></i>View </a></td><td> <button class="btn btn-warning" data-toggle="modal" type="button" data-target="#update_modal_'.$row['id'].'" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-edit btn-icon"></i>Edit</button></td>
+		<td> <button class="btn btn-danger" type="button" onclick="del_doc.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-trash btn-icon"></i>Delete</button>
 </td>';
 }
 ?>
+<!-- View Modal -->
+<div class="modal" id="view_modal_<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel"><?php echo $row['name'] ?></h5>
+		</div>
+		<div class="modal-body">
+			<object data="<?php echo $row['pdffile'] ?>" type="application/pdf" width="100%" height="100%">
+			</object>
+
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		</div>
+	</div>
+</div>
+</div>
+<!-- End view Modal -->
+
 <!-- Update Modal -->
 <div class="modal" id="update_modal_<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog" role="document">
@@ -285,7 +386,7 @@ $query = mysqli_query($conn, $sql);
 <div class="col-md-4">
 	<div class="video-block">
 		<!-- <div class="gallery-container" data-toggle="modal" data-target="#update_modal_<?php echo $row['id'] ?>"> -->
-    <iframe src="<?php echo $row['pdffile'] ?>" width="100%" height="200px"></iframe>
+<img style="width:100%;height:auto;cursor:pointer" src="img/video.jpg" data-toggle="modal" data-target="#view_modal_<?php echo $row['id'] ?>" alt="" />
 	<!-- </div> -->
 		<p>
 			<?php echo $row['name'] ?>
@@ -293,6 +394,24 @@ $query = mysqli_query($conn, $sql);
 <button  class="btn btn-warning" type="button" data-toggle="modal" data-target="#update_modal_<?php echo $row['id'] ?>" id="del_btn_doc" data-id="<?php echo $row['id'] ?>" ><i class="fa fa-edit btn-icon"></i>Edit</button></td>
 <button  class="btn btn-danger" type="button" onclick="del_video.call(this);" id="del_btn_vid" data-id="<?php echo $row['id'] ?>"><i class="fa fa-trash btn-icon"></i>Delete</button>
 </div>
+
+<!-- view Modal -->
+<div class="modal" id="view_modal_<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel"><?php echo $row['name'] ?></h5>
+		</div>
+		<div class="modal-body">
+			<iframe src="<?php echo $row['pdffile'] ?>" width="100%" height="auto"></iframe>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		</div>
+	</div>
+</div>
+</div>
+<!-- End view Modal -->
 
 <!-- Update Modal -->
 <div class="modal" id="update_modal_<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -343,11 +462,32 @@ $query = mysqli_query($conn, $sql);
  while ($row = mysqli_fetch_assoc($query)) {
 	 if ($role=="admin" ) {
 
-$r= '<tr><td>'.$row['est_date'].'</td><td>'.$row['pay'].'</td><td>'.$row['add_by'].'</td><td>'.$row['invoice_no'].'</td><td><a class="btn btn-success" href="'.$row['invoice_path'].'"><i class="fa fa-eye btn-icon"></i>View </a></td>';
+$r= '<tr><td>'.$row['est_date'].'</td><td>'.$row['pay'].'</td><td>'.$row['add_by'].'</td><td>'.$row['invoice_no'].'</td><td><a class="btn btn-success" data-toggle="modal" data-target="#view_modal_'.$row['id'].'"><i class="fa fa-eye btn-icon"></i>View </a></td>';
 $r.= '<td> <button class="btn btn-warning" type="button" data-toggle="modal" data-target="#update_modal_'.$row['id'].'"  id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-edit btn-icon"></i>Edit</button></td>';
 $r.='<td> <button class="btn btn-danger" type="button" onclick="del_pay.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" ><i class="fa fa-trash btn-icon"></i>Delete</button></td>';
 }
 ?>
+<!-- View Modal -->
+<div class="modal" id="view_modal_<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel">Pdf</h5>
+		</div>
+		<div class="modal-body">
+			<object data="<?php echo $row['invoice_path'] ?>" type="application/pdf" width="100%" height="100%">
+			</object>
+
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		</div>
+	</div>
+</div>
+</div>
+<!-- End view Modal -->
+
+
 <!-- Update Modal -->
 <div class="modal" id="update_modal_<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog" role="document">

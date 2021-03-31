@@ -1,7 +1,7 @@
 <!-- Sidebar -->
 <div class="menu" id="menu">
   <div class="menu-heading">
-    <a class="logo-link" href="home.php"><img class="logo" src="<?php echo $domain ?>/img/Smile_Logo-white.png" alt="" /></a>
+    <a class="logo-link" href="<?php echo $domain ?>/home.php"><img class="logo" src="<?php echo $domain ?>/img/Smile_Logo-white.png" alt="" /></a>
   </div>
   <div class="menu-links">
     <a href='<?php echo $domain ?>/mysql/search.php'>

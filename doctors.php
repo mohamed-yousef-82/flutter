@@ -44,6 +44,8 @@ include "header.php";
     <th scope="col">mobile</th>
     <th scope="col">city</th>
     <th scope="col">company</th>
+    <th scope="col">edit</th>
+    <th scope="col">delete</th>
   </tr>
 </thead>
 <tbody id="tb">
@@ -55,8 +57,50 @@ if($query){
 
 while ($row = mysqli_fetch_assoc($query)){
   $r= '<tr><td>'.$row['name'].'</td><td>'.$row['address'].'</td><td>'.$row['mobile'].'</td><td>'.$row['city'].'</td><td>'.$row['by_doc'].'</td>';
-  $r.= '<td> <button type="button" onclick="del_doctor.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" >Delete</button></td>';
-$r.=' <td><button class="btn btn-warning" data-toggle="modal" type="button" data-target="#update_modal"'. $user_id .'"><span class="glyphicon glyphicon-edit"></span> Edit</button></td>';
+	$r.=' <td><button class="btn btn-warning" data-toggle="modal" data-target="#update_modal_'.$row['id'].'" type="button" data-target="#update_modal"'. $user_id .'"><span class="glyphicon glyphicon-edit"></span> Edit</button></td>';
+  $r.= '<td> <button class="btn btn-danger" type="button" onclick="del_doctor.call(this);" id="del_btn_doc" data-id="'. $row['id'] . '" >Delete</button></td>';
+?>
+<!-- Update Modal -->
+<div class="modal" id="update_modal_<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+
+		</div>
+		<div class="modal-body">
+		<form>
+			<div class="form-group">
+			<label>name</label>
+			 <input type="text" value="<?php echo $row['name'] ?>" class="form-control" name="ques" id="ques" />
+			</div>
+			<div class="form-group">
+			<label>address</label>
+			 <input type="text" value="<?php echo $row['address'] ?>" class="form-control" name="ques" id="ques" />
+			</div>
+			<div class="form-group">
+			<label>mobile</label>
+			 <input type="text" value="<?php echo $row['mobile'] ?>" class="form-control" name="ques" id="ques" />
+			</div>
+			<div class="form-group">
+			<label>city</label>
+			<select class="form-control">
+				<option><?php echo $row['city'] ?></option>
+			</select>
+			</div>
+
+		</form>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary">Save changes</button>
+		</div>
+	</div>
+</div>
+</div>
+<!-- End Update Modal -->
+
+<?php
    $r.='</tr>';
   echo $r;
 }

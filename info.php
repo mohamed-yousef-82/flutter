@@ -346,6 +346,8 @@ get_status($id);
                   <th scope="col">Refeniment</th>
                   <th scope="col">Redesign</th>
                   <th scope="col">view</th>
+                  <th scope="col">Edit</th>
+                  <th scope="col">Delete</th>
                 </tr>
               </thead>
               <tbody id="tb4">
