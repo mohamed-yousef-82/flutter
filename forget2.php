@@ -1,7 +1,9 @@
 <?php
-include "header.php";
+include "header2.php";
 ?>
-<form class="form" action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+<form class="form form-page" action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+	<a class="logo-link" href="<?php echo $domain ?>/home.php"><img class="logo" src="<?php echo $domain ?>/img/Smile_Logo-dark.png" alt="" /></a>
+	<h3>Change Password</h3>
 <div class="form-group">
 	<label>New Password</label>		 <input class="form-control" name="pass" id="pass" type="text" >
 </div>

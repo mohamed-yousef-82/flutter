@@ -75,68 +75,86 @@ $arr=json_decode(user_info($id),true);
       <th>
       Name
       </th>
+      <td>
+        <?php echo $arr[0]['name']; ?>
+      </td>
+    </tr>
+    <tr>
       <th>
       Id
       </th>
-      <th>
-      Name
-      </th>
-      <th>
-      Address
-      </th>
-      <th>
-      City
-      </th>
-      <th>
-      Gender
-      </th>
-      <th>
-      Mobile
-      </th>
-      <th>
-      Age
-      </th>
-      <th>
-      Email
-      </th>
-      <th>
-      Doctor
-      </th>
-      <th>
-      Select
-      </th>
-    </tr>
-    <tr>
-      <td>
-        <?php echo $arr[0]['name']; ?>
-      </td>
       <td>
         <?php echo $arr[0]['id']; ?>
       </td>
+    </tr>
+    <tr>
+      <th>
+      Name
+      </th>
       <td>
         <?php echo $arr[0]['name']; ?>
       </td>
+    </tr>
+    <tr>
+      <th>
+      Address
+      </th>
       <td>
         <?php echo $arr[0]['city']; ?>
       </td>
+    </tr>
+    <tr>
+      <th>
+      City
+      </th>
       <td>
         <?php echo $arr[0]['address']; ?>
       </td>
+    </tr>
+    <tr>
+      <th>
+      Gender
+      </th>
       <td>
         <?php echo $arr[0]['gender']; ?>
       </td>
+    </tr>
+    <tr>
+      <th>
+      Mobile
+      </th>
       <td>
         <?php echo $arr[0]['code'].$arr[0]['mobile']; ?>
       </td>
+    </tr>
+    <tr>
+      <th>
+      Age
+      </th>
       <td>
         <?php echo $arr[0]['age']; ?>
       </td>
+    </tr>
+    <tr>
+      <th>
+      Email
+      </th>
       <td>
         <?php echo $arr[0]['email']; ?>
       </td>
+    </tr>
+    <tr>
+      <th>
+      Doctor
+      </th>
       <td>
         <?php echo $arr[0]['doctor']; ?>
       </td>
+    </tr>
+    <tr>
+      <th>
+      Select
+      </th>
       <td>
         <?php
         echo '<select id="doctor" class="form-control">'; // Open your drop down box
@@ -154,8 +172,7 @@ $arr=json_decode(user_info($id),true);
 
          ?>
              </td>
-
-    </tr>
+           </tr>
   </thead>
 </table>
 <?php
@@ -496,18 +513,17 @@ get_video($id);
 for ( $i=0;$i<count($arr2);$i++){
   ?>
   <div class="col-md-3">
-    <div class="gallery-container" data-toggle="modal" data-target="#update_modal_<?php echo $arr2[$i]['id'] ?>">
+    <div class="gallery-container" data-toggle="modal" data-target="#update_<?php echo $arr2[$i]['id'] ?>">
     <img src='uploads/<?php echo $arr2[$i]["path"] ?>' /></div>
   <?php
   echo "<div class='gallery-txt'>";
     echo "<span>" .$arr2[$i]['id']."</span>";
        echo "<p>".$arr2[$i]['time']."</p>";
        echo "<button class='close-btn'><i class='fas fa-times-circle'></i></button>";
-       echo "</div>";
        ?>
      </div>
      <!-- view Modal -->
-     <div class="modal" id="update_modal_<?php echo $arr2[$i]['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal" id="update_<?php echo $arr2[$i]['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
      <div class="modal-dialog" role="document">
      	<div class="modal-content">
      		<div class="modal-body">
@@ -517,6 +533,7 @@ for ( $i=0;$i<count($arr2);$i++){
      			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
      		</div>
      	</div>
+     </div>
      </div>
      </div>
      <!-- End view Modal -->

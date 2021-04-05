@@ -206,6 +206,23 @@ span{
 }
 .right-content{
   padding: 10px;
+  .form-page{
+    width: 70%;
+    margin:50px auto;
+    h3{
+      background: $darkblue;
+    padding: 10px;
+    color: #fff;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    }
+    .logo{
+      width: 200px;
+      margin: auto;
+      display: block;
+    }
+  }
+
 }
 tfoot input {
     width: 100%;
@@ -395,7 +412,6 @@ border-bottom: 1px solid #ddd;
     outline: none;
     outline-offset: -2px;
 }
-
 @media screen and (max-width: 768px) {
   .menu span{
     display: none;
